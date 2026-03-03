@@ -86,6 +86,10 @@
 
     $ python3 AudioPlayer.py
 
+ Build:
+
+    pyinstaller --clean --windowed --name "AudioPlayer" AudioPlayer.py
+    
  Notes:
 
     • Designed for clean packaging into macOS / Windows executable builds.
