@@ -1,8 +1,9 @@
- Project:   Audio Player (Cross-Platform Python Audio Player)
- File:      AudioPlayer.py
+ Audio Player (Cross-Platform Python Audio Player)
+ 
  Author:    Adrian Crimu
- GitHub:    https://github.com/acrimu/AudioPlayer
+ 
  License:   MIT License
+ 
  Created:   2026-03-03
 
  Description:
