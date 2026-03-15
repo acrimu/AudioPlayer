@@ -98,6 +98,16 @@
 
 -------------------------------------------------------------------------------
 
+ Build Executable:
+
+    $ pyinstaller --clean --windowed \
+--name AudioPlayer \
+--icon resources/icon.icns \
+--add-data "resources:resources" \
+AudioPlayer.py
+
+-------------------------------------------------------------------------------
+
  Notes:
 
     • Designed for clean packaging into macOS / Windows executable builds.
@@ -128,7 +138,13 @@ from tkinterdnd2 import DND_FILES, TkinterDnD
 import sys
 import subprocess
 
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
 
+    return os.path.join(base_path, relative_path)
 
 class App(TkinterDnD.Tk):
     def __init__(self):
@@ -158,6 +174,8 @@ class App(TkinterDnD.Tk):
         self.last_opened_folder = os.path.expanduser("~")  # Default to home folder
 
         # === Setup GUI ===
+        icon = tk.PhotoImage(file=resource_path("resources/icon.png"))
+        self.iconphoto(True, icon)
         self.title("🎵 Audio Player")
         self.geometry("750x580")
         self.minsize(750, 500)
