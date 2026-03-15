@@ -88,8 +88,12 @@
 
  Build:
 
-    pyinstaller --clean --windowed --name "AudioPlayer" AudioPlayer.py
-    
+    pyinstaller --clean --windowed \
+      --name AudioPlayer \
+      --icon resources/icon.icns \
+      --add-data "resources:resources" \
+      AudioPlayer.py
+
  Notes:
 
     • Designed for clean packaging into macOS / Windows executable builds.

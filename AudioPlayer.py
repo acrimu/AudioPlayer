@@ -101,10 +101,10 @@
  Build Executable:
 
     $ pyinstaller --clean --windowed \
---name AudioPlayer \
---icon resources/icon.icns \
---add-data "resources:resources" \
-AudioPlayer.py
+      --name AudioPlayer \
+      --icon resources/icon.icns \
+      --add-data "resources:resources" \
+      AudioPlayer.py
 
 -------------------------------------------------------------------------------
 
