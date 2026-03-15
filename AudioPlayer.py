@@ -138,6 +138,9 @@ from tkinterdnd2 import DND_FILES, TkinterDnD
 import sys
 import subprocess
 
+# Application version
+VERSION = "1.0.0"
+
 def resource_path(relative_path):
     try:
         base_path = sys._MEIPASS
@@ -176,7 +179,7 @@ class App(TkinterDnD.Tk):
         # === Setup GUI ===
         icon = tk.PhotoImage(file=resource_path("resources/icon.png"))
         self.iconphoto(True, icon)
-        self.title("🎵 Audio Player")
+        self.title(f"🎵 Audio Player v{VERSION}")
         self.geometry("750x580")
         self.minsize(750, 500)
         
@@ -361,6 +364,11 @@ class App(TkinterDnD.Tk):
         file_menu.add_cascade(label="Recent playlists", menu=self.recent_menu)
         file_menu.add_separator()
         file_menu.add_command(label="Exit", command=self.quit)
+
+        # Add Help menu with About
+        help_menu = tk.Menu(self.menu_bar, tearoff=0)
+        self.menu_bar.add_cascade(label="Help", menu=help_menu)
+        help_menu.add_command(label="About", command=self.show_about)
 
         # populate recent list now that menu exists
         self.load_recent_playlists()
@@ -1219,7 +1227,25 @@ class App(TkinterDnD.Tk):
     
         return event.action  # Return action to complete the drop
 
-    
+    def show_about(self):
+        """Show the About dialog with version information."""
+        about_text = f"""🎵 Audio Player v{VERSION}
+
+A full-featured, cross-platform desktop audio player
+built with Tkinter and VLC.
+
+Author: Adrian Crimu
+License: MIT License
+GitHub: https://github.com/acrimu/AudioPlayer
+
+Supported formats: MP3, WAV, FLAC, OGG, AAC, M4A, WMA
+
+Python: {sys.version.split()[0]}
+Platform: {platform.system()} {platform.release()}"""
+
+        messagebox.showinfo("About Audio Player", about_text)
+
+
 if __name__ == "__main__":
     try:
         app = App()

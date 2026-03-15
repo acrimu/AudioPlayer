@@ -88,11 +88,9 @@
 
  Build:
 
-    pyinstaller --clean --windowed \
-      --name AudioPlayer \
-      --icon resources/icon.icns \
-      --add-data "resources:resources" \
-      AudioPlayer.py
+    # IMPORTANT: Run using the spec file to preserve version / bundle metadata.
+    # Running `pyinstaller AudioPlayer.py` will regenerate/overwrite `AudioPlayer.spec`.
+    pyinstaller --clean --noconfirm AudioPlayer.spec
 
  Notes:
 
