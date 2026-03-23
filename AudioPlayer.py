@@ -288,6 +288,9 @@ class App(TkinterDnD.Tk):
             if self.player:
                 self.player.audio_set_volume(min(percent, 150))  # VLC max = 150
 
+        def set_volume_to_full(_event=None):
+            self.volume_slider.set(100)
+
         self.volume_slider = tk.Scale(self.vol_frame, from_=0, to=150, orient=tk.HORIZONTAL, resolution=1,
                                 command=on_volume_change,
                                 troughcolor="#555", highlightthickness=0, sliderlength=15, width=10,
@@ -295,7 +298,9 @@ class App(TkinterDnD.Tk):
         self.volume_slider.set(100)  # Default value
         self.volume_slider.pack(side=tk.LEFT, padx=8)
 
-        ttk.Label(self.vol_frame, textvariable=self.volume_percent).pack(side=tk.LEFT, padx=6)
+        self.volume_percent_label = ttk.Label(self.vol_frame, textvariable=self.volume_percent, cursor="hand2")
+        self.volume_percent_label.pack(side=tk.LEFT, padx=6)
+        self.volume_percent_label.bind("<Button-1>", set_volume_to_full)
 
         # === Buttons ===
         self.btn2_frame = ttk.Frame(self)
